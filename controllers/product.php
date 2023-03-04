@@ -1,0 +1,1 @@
+<?php require "view/users/product-page.php";?>
