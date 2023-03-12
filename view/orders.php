@@ -1,4 +1,4 @@
-<?php     require "database/connection.php"; 
+<?php     require "database/Connection.php"; 
     if($_SERVER['REQUEST_METHOD']=='POST'){
         $customerId = $_POST['customer'];
         $productId = $_POST['product'];

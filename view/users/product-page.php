@@ -1,28 +1,24 @@
 <?php
-        require "database/connection.php"; 
+        require "database/Connection.php"; 
         $name=$_GET["name"];
         $query="select * from menus where ProductName='$name'";
-
         $result=$con->query($query);
         $row=$result->fetch_assoc();
-        
-        if($_SERVER['REQUEST_METHOD']=="POST"){
-            header("location:http://localhost:8000/");
-        }
+
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Catalog - Brand</title>
+    <title>FOODMA</title>
     <link rel="stylesheet" href="public/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i&amp;display=swap">
     <link rel="stylesheet" href="public/assets/fonts/simple-line-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css">
     <link rel="stylesheet" href="public/assets/css/vanilla-zoom.min.css">
 </head>
+
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
@@ -34,16 +30,21 @@
                     <!-- <li class="nav-item"><a class="nav-link" href="service-page.html">Services</a></li> -->
                     <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
                     <!-- <li class="nav-item"><a class="nav-link" href="/product">Product</a></li> -->
-                    <li class="nav-item"><a class="nav-link" href="payment-page.html">Payment</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="payment-page.html">Payment</a></li>
                     <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="registration.html">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>-->
+                    <li class="nav-item"><a class="nav-link" href="registration.html">Register</a></li> 
+                    <li class="nav-item"><a class="nav-link" href="cart"><i class="icon-basket fa-10x" ></i></a></li>
                 </ul>
             </div>
         </div>
     </nav>
+
     <main class="page product-page">
         <section class="clean-block clean-product dark">
+        <div class="alert alert-success" role="alert" id="add" style="display:none;">
+                Product Added Successfully
+        </div>
             <div class="container">
                 <div class="block-heading">
                     <h2 class="text-info">Product Page</h2>
@@ -56,15 +57,17 @@
                                 <div class="gallery">
                                     <div id="product-preview" class="vanilla-zoom">
                                         <div class="zoomed-image"></div>
-                                        <div class="sidebar"><img class="img-fluid d-block small-preview" src="public/assets/img/tech/image1.jpg"><img class="img-fluid d-block small-preview" src="public/assets/img/tech/image1.jpg"><img class="img-fluid d-block small-preview" src="public/assets/img/tech/image1.jpg"></div>
+                                        <div class="sidebar"><img class="img-fluid d-block small-preview" src="public/assets/img/tech/<?php echo $row["image"]; ?>"><img class="img-fluid d-block small-preview" src="public/assets/img/tech/<?php echo $row["image"]; ?>"><img class="img-fluid d-block small-preview" src="public/assets/img/tech/<?php echo $row["image"]; ?>"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="info">
-                                    <form method="POST" action="http://localhost:8000/addcart?product_id=<?php echo $row['id_menu']; ?>">
+
+                                    <form id="myForm" method="POST"  >
                                         <h3><?php echo $row["ProductName"]; ?></h3>
                                         <div class="rating"><img src="public/assets/img/star.svg"><img src="public/assets/img/star.svg"><img src="public/assets/img/star.svg"><img src="public/assets/img/star-half-empty.svg"><img src="public/assets/img/star-empty.svg"></div>
+                                        <!-- <h3>Quantity</h3> -->
                                         <div class="price">
                                             <h3>$<?php echo $row["Price"]; ?></h3>
                                         </div>
@@ -72,6 +75,7 @@
                                         <input type="hidden" name="hidden_price" value="<?php echo $row["Price"]; ?>"/>
                                         <button class="btn btn-primary" type="submit" name="add_to_cart"><i class="icon-basket"></i>Add to Cart</button>
                                     </form>
+                                    
                                     <div class="summary">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nunc, pretium at augue at, convallis pellentesque ipsum. Vestibulum diam risus, sagittis at fringilla at, pulvinar vel risus. Vestibulum dignissim eu nulla eu imperdiet. Morbi mollis tellus a nunc vestibulum consequat. Quisque tristique elit et nibh dapibus sodales. Nam sollicitudin a urna sed iaculis.</p>
                                     </div>
@@ -91,7 +95,7 @@
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                     <div class="row">
                                         <div class="col-md-5">
-                                            <figure class="figure"><img class="img-fluid figure-img" src="public/assets/img/tech/image3.png"></figure>
+                                            <figure class="figure"><img class="img-fluid figure-img" src="public/assets/img/tech/<?php echo $row["image"]; ?>"></figure>
                                         </div>
                                         <div class="col-md-7">
                                             <h4>Lorem Ipsum</h4>
@@ -104,7 +108,7 @@
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                         </div>
                                         <div class="col-md-5">
-                                            <figure class="figure"><img class="img-fluid figure-img" src="public/assets/img/tech/image3.png"></figure>
+                                            <figure class="figure"><img class="img-fluid figure-img" src="public/assets/img/tech/<?php echo $row["image"]; ?>"></figure>
                                         </div>
                                     </div>
                                 </div>
@@ -164,28 +168,28 @@
                             <div class="row justify-content-center">
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="clean-related-item">
-                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="public/assets/img/tech/image2.jpg"></a></div>
-                                        <div class="related-name"><a href="#">Lorem Ipsum dolor</a>
+                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="public/assets/img/tech/<?php echo $row["image"]; ?>"></a></div>
+                                        <div class="related-name"><a href="#"><?php echo $row['ProductName'];?></a>
                                             <div class="rating"><img src="public/assets/img/star.svg"><img src="public/assets/img/star.svg"><img src="public/assets/img/star.svg"><img src="public/assets/img/star-half-empty.svg"><img src="public/assets/img/star-empty.svg"></div>
-                                            <h4>$300</h4>
+                                            <h4>$<?php echo $row['Price'];?></h4>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="clean-related-item">
-                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="public/assets/img/tech/image2.jpg"></a></div>
-                                        <div class="related-name"><a href="#">Lorem Ipsum dolor</a>
+                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="public/assets/img/tech/<?php echo $row["image"]; ?>"></a></div>
+                                        <div class="related-name"><a href="#"><?php echo $row['ProductName'];?></a>
                                             <div class="rating"><img src="public/assets/img/star.svg"><img src="public/assets/img/star.svg"><img src="public/assets/img/star.svg"><img src="public/assets/img/star-half-empty.svg"><img src="public/assets/img/star-empty.svg"></div>
-                                            <h4>$300</h4>
+                                            <h4>$<?php echo $row['Price'];?></h4>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="clean-related-item">
-                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="public/assets/img/tech/image2.jpg"></a></div>
-                                        <div class="related-name"><a href="#">Lorem Ipsum dolor</a>
+                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="public/assets/img/tech/<?php echo $row["image"]; ?>"></a></div>
+                                        <div class="related-name"><a href="#"><?php echo $row['ProductName'];?></a>
                                             <div class="rating"><img src="public/assets/img/star.svg"><img src="public/assets/img/star.svg"><img src="public/assets/img/star.svg"><img src="public/assets/img/star-half-empty.svg"><img src="public/assets/img/star-empty.svg"></div>
-                                            <h4>$300</h4>
+                                            <h4>$<?php echo $row['Price'];?></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -237,6 +241,26 @@
             <p>© 2023 Copyright Text</p>
         </div>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(function() {
+        // $("#add").hide();
+    $('#myForm').submit(function(e) {
+        e.preventDefault(); // prevent form from submitting normally
+        var data = $(this).serialize(); // serialize form data
+        $.ajax({
+        url: 'http://localhost:8000/cart?product_id=<?php echo $row['id_menu']; ?>',
+        type: 'POST',
+        data: data,
+        success: function(response) {
+            $("#add").show();
+            $("#add").fadeOut(8000);
+        }
+        });
+    });
+    });
+    </script>
     <script src="public/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
     <script src="public/assets/js/vanilla-zoom.js"></script>

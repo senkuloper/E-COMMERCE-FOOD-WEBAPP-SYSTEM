@@ -14,7 +14,7 @@ $routes = [
     '/addcustomer' => 'controllers/addcustomer.php',
     '/menulist' => 'controllers/menu.php',
     '/addproduct' => 'controllers/addproduct.php',
-    '/addcart' => 'controllers/addcart.php',
+    '/cart' => 'controllers/addcart.php',
 ];
 
 

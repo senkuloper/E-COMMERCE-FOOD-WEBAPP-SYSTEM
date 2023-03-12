@@ -124,18 +124,17 @@
                                     while($row=$result->fetch_assoc()){ ?>
                                     <div class="col-12 col-md-6 col-lg-4">
                                         <div class="clean-product-item">
-                                            <div class="image"><a href="/product?name=<?php echo $row["ProductName"]?>"><img class="img-fluid d-block mx-auto" src="public/assets/img/tech/image2.jpg"></a></div>
+                                            <div class="image"><a href="/product?name=<?php echo $row["ProductName"]?>"><img class="img-fluid d-block mx-auto" src="public/assets/img/tech/<?php echo $row["image"]; ?>"></a></div>
                                             <div class="product-name"><a href="/product/<?php echo $row["ProductName"]?>"><?php echo $row["ProductName"]; ?></a></div>
                                             <div class="about">
                                                 <div class="rating"><img src="public/assets/img/star.svg"><img src="public/assets/img/star.svg"><img src="public/assets/img/star.svg"><img src="public/assets/img/star-half-empty.svg"><img src="public/assets/img/star-empty.svg"></div>
                                                 <div class="price">
                                                     <h3><?php echo $row["Price"] ?>$</h3>
-                            
                                                 </div>
                                             </div>
                                         </div>
-                                        <?php } ?>
                                     </div>
+                                    <?php } ?>
                                 </div>
                                 <nav>
                                     <ul class="pagination">

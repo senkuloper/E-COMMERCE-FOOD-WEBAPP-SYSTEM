@@ -1,5 +1,5 @@
 <?php     
-    require "database/connection.php"; 
+    require "database/Connection.php"; 
 
 
     if($_SERVER['REQUEST_METHOD']=='POST'){

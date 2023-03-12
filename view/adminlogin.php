@@ -1,11 +1,6 @@
 <?php 
 	// require"../functions.php";
-	$host='localhost';
-	$user='root';
-	$password='';
-    $db='pdfcom_db';
-
-    $con=mysqli_connect($host,$user,$password,$db);
+	require "database/Connection.php"; 
 
     // session_start();
     if($_SERVER["REQUEST_METHOD"]=="POST"){
