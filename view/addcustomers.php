@@ -1,6 +1,7 @@
-<?php     
+<?php  
+	session_start();
+    require 'elements/auth_check.php';   
     require "database/Connection.php"; 
-
 
     if($_SERVER['REQUEST_METHOD']=='POST'){
         $firstname=$_POST['FirstName'];

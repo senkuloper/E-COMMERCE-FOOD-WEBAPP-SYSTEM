@@ -1,4 +1,7 @@
-
+<?php
+  session_start();
+  require 'elements/auth_check.php';
+?>
 <!doctype html>
 <html lang="en">
   <head>

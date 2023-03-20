@@ -58,7 +58,10 @@
                 }
             ?>
         </table>
-
     </div>
+    <form>
+        <button>Checkout</button>
+    </form>
+    
 </body>
 </html>

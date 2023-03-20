@@ -1,4 +1,8 @@
-<?php     require "database/Connection.php"; ?>
+<?php     
+    session_start();
+    require 'elements/auth_check.php';
+    require "database/Connection.php"; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

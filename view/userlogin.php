@@ -1,21 +1,23 @@
 <?php 
 	// require"../functions.php";
-	// session_start();
+
+	session_start();
+  	require 'elements/auth_check.php';
 	require "database/Connection.php"; 
 
-    session_start();
+    // session_start();
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         $email=$_POST['email'];
         $password=$_POST['password'];
-        $query="select * from adminlogin where email='$email' and password='$password'";
+        $query="select * from userlogin where email='$email' and password='$password'";
 
         $result=mysqli_query($con,$query);
         $row=mysqli_fetch_array($result);
         $count=mysqli_num_rows($result);
-		$_SESSION['id_admin']=[$row['id_admin']];
+
         if($count==1){
             // $_SESSION["email"]=$email;
-            header("location:dashboard");
+            echo "Great ";
         }
         else{
             echo "email or password is incorrect";
